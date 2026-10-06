@@ -1,8 +1,3 @@
-/*--------------------------------------------------------------------*/
-/* replace.c                                                          */
-/* Author: ???                                                        */
-/*--------------------------------------------------------------------*/
-
 #include "str.h"
 #include <stdio.h>
 #include <assert.h>
@@ -20,7 +15,44 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   /* Insert your code here. */
+   const char *pcLineCursor;
+   const char *pcMatch;
+   size_t uFromLength;
+   size_t uReplaceCount = 0;
+
+   assert(pcLine != NULL);
+   assert(pcFrom != NULL);
+   assert(pcTo != NULL);
+
+   /* An empty source string has no distinct occurrences to replace. */
+   if (*pcFrom == '\0')
+   {
+      fputs(pcLine, stdout);
+      return 0;
+   }
+
+   uFromLength = Str_getLength(pcFrom);
+   pcLineCursor = pcLine;
+   pcMatch = Str_search(pcLineCursor, pcFrom);
+
+   /* Write each unmatched portion followed by its replacement. */
+   while (pcMatch != NULL)
+   {
+      while (pcLineCursor < pcMatch)
+      {
+         putchar(*pcLineCursor);
+         pcLineCursor++;
+      }
+
+      fputs(pcTo, stdout);
+      uReplaceCount++;
+      pcLineCursor = pcMatch + uFromLength;
+      pcMatch = Str_search(pcLineCursor, pcFrom);
+   }
+
+   /* Write the portion of the line following the final match. */
+   fputs(pcLineCursor, stdout);
+   return uReplaceCount;
 }
 
 /*--------------------------------------------------------------------*/
@@ -56,7 +88,7 @@ int main(int argc, char *argv[])
    pcTo = argv[2];
 
    while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL)
-      /* Insert your code here. */
+      uReplaceCount += replaceAndWrite(acLine, pcFrom, pcTo);
 
    fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
    return 0;
