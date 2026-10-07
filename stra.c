@@ -1,3 +1,9 @@
+/*--------------------------------------------------------------------*/
+/* stra.c                                                             */
+/* Array implemntation of the string module                           */
+/* Author: Kareem Mohamed                                             */
+/*--------------------------------------------------------------------*/
+
 #include "str.h"
 #include <assert.h>
 

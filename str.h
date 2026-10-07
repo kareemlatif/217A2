@@ -1,13 +1,19 @@
+/*--------------------------------------------------------------------*/
+/* str.h                                                              */
+/* Interface for string module                                        */
+/* Author: Kareem Mohamed                                             */
+/*--------------------------------------------------------------------*/
+
 #ifndef STR_INCLUDED
 #define STR_INCLUDED
 #include <stddef.h>
 
 /*--------------------------------------------------------------------*/
 
-/* Return the number of characters in string pcS, excluding the
+/* Return the number of characters in string pcSrc, excluding the
    terminating null character. */
 
-size_t Str_getLength(const char *pcS);
+size_t Str_getLength(const char *pcSrc);
 
 /*--------------------------------------------------------------------*/
 

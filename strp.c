@@ -1,3 +1,9 @@
+/*--------------------------------------------------------------------*/
+/* strp.c                                                             */
+/* Pointer implemntation of the string module                         */
+/* Author: Kareem Mohamed                                             */
+/*--------------------------------------------------------------------*/
+
 #include "str.h"
 #include <assert.h>
 
@@ -24,22 +30,23 @@ size_t Str_getLength(const char *pcSrc)
 
 char *Str_copy(char *pcDest, const char *pcSrc)
 {
-    char *pcDestStart;
+   char *pcDestStart;
 
-    assert(pcDest != NULL);
-    assert(pcSrc != NULL);
+   assert(pcDest != NULL);
+   assert(pcSrc != NULL);
 
-    pcDestStart = pcDest;
+   pcDestStart = pcDest;
 
-    while (*pcSrc != '\0')
-    {
-        *pcDest = *pcSrc;
-        pcDest++;
-        pcSrc++;
-    }
+   while (*pcSrc != '\0')
+   {
+      *pcDest = *pcSrc;
+      pcDest++;
+      pcSrc++;
+   }
 
-    *pcDest = '\0';
-    return pcDestStart;
+   *pcDest = '\0';
+   return pcDestStart;
+    
 }
 
 /*--------------------------------------------------------------------*/
